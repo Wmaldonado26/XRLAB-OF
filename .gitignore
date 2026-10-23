@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.egg-info/
+.venv/
+venv/
+env/
+ENV/
+
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Django y datos locales
+db.sqlite3
+*.sqlite3
+db.sqlite3.*
+media/
+staticfiles/
+storage/*
+!storage/.gitkeep
+converters/poc_output_rvm/
+
+# Frontend
+node_modules/
+dist/
+.vite/
+
+# IDE, sistema y logs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

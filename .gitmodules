@@ -1,0 +1,3 @@
+[submodule "converters/rvmsharp_repo"]
+	path = converters/rvmsharp_repo
+	url = https://github.com/equinor/rvmsharp.git
