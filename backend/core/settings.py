@@ -1,4 +1,4 @@
-import os
+﻿import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -126,17 +126,21 @@ REST_FRAMEWORK = {
 # OpenAPI Schema Documentation
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Industrial 3D Viewer API',
-    'DESCRIPTION': 'API REST para carga reanudable de archivos RVM y Datasmith (3-5 GB), pipeline de conversión y visor Three.js',
+    'DESCRIPTION': 'Microservicio API REST para carga reanudable, conversiÃ³n y consulta de modelos 3D.',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
 # CORS configuration
-CORS_ALLOW_ALL_ORIGINS = DEBUG
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
+    origin.strip()
+    for origin in os.getenv(
+        'CORS_ALLOWED_ORIGINS',
+        'http://localhost:5173,http://127.0.0.1:5173',
+    ).split(',')
+    if origin.strip()
 ]
+CORS_ALLOW_ALL_ORIGINS = DEBUG and os.getenv('CORS_ALLOW_ALL_ORIGINS', 'False') == 'True'
 
 # Celery Configuration
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
@@ -153,3 +157,4 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 15 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE = 15 * 1024 * 1024
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
